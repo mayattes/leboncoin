@@ -1,0 +1,56 @@
+
+.menu {
+  font-size: 18px;
+  line-height: 40px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background-color: #FF5D00;
+  color: white;
+}
+
+h2 {
+  height: 50px;
+  color: white;
+  text-align: left;
+  border-bottom: 2px;
+  border-bottom-color: gray;
+  margin: 20px;
+  padding: 5px;
+
+}
+
+h3 {
+  background-color: white;
+}
+
+.btn-send {
+  width: 150px;
+  background-color: blue;
+  color: white;
+  margin: 50px;
+}
+
+.bg-leboncoin {
+  background-color: #FF5D00;
+  color: white;
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+  color: white;
+}
+
+input {
+  width: 600px;
+  height: 50px;
+  border-bottom: 2px;
+  border-bottom-color: gray;
+  margin: 20px;
+}
+ h3 {
+   margin: 20px;
+ }
+
+ button {
+   margin: 20px;
+ }
