@@ -46,6 +46,15 @@ app.get('/', function (req, res) {
     });
 });
 
+app.get('/', function (req, res) {
+    Annonce.find({ _id: req.params }, function (err, ann) { 
+        res.render('home.ejs', {
+            ann: ann,
+        });
+
+    });
+});
+
 app.get('/annonce', function (req, res) {
     res.render('annonce.ejs');
 });
