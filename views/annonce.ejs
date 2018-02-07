@@ -1,9 +1,14 @@
 <% include partials/header.ejs %>
-<div class="row bloc">
-    <div class="col-lg-7 offres"></div>
-    <div class="col-lg-5 offres"></div>
+
+<div class="bloc">
+   <%=ann.title%>
+   <%=ann.picture%>
+   <%=ann.id%>
+   <%=ann.town%>
+   <%=ann.price%>
+   <%=ann.description%>
+   <img src="/uploads/<%=ann.picture%>" >
     
 </div>
 
-<% include partials/footer.ejs %>
 
