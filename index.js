@@ -30,23 +30,6 @@ var annonceSchema = new mongoose.Schema({
 /* var Student = mongoose.model("Student", studentSchema); */
 var Annonce = mongoose.model("annonce", annonceSchema);
 
-/* var ann = new Annonce({
-    title: "Coffret blu-ray'Stanlay kubrick' neuf",
-    price: "20 €",
-    town: "Paris 75002",
-    description: "Vends coffret blu-ray 'Stanley-kubrick: un réalisateur visionnaire' le coffret inclu: -2001 : l'odyssée de l'espace, Eyes Wid Shut, Full Metal Jacket, Orange mécanique, Shinning, Lolita, Barry Lyndon"
-}); */
-
-
-
-/* ann.save(function (err, obj) {
-    if (err) {
-        console.log("something went wrong");
-    } else {
-        console.log("we just saved the new student " + obj.name);
-    }
-}); */
-
 /* Student.find({}, function (err, students) {
     console.log(students);
 
@@ -54,7 +37,21 @@ var Annonce = mongoose.model("annonce", annonceSchema);
 
 
 app.get('/', function (req, res) {
-    res.render('home.ejs');
+    //Annonce.find({ _id: req.params }, function (err, ann) { 
+    Annonce.find({}, function (err, ann) {
+        res.render('home.ejs', {
+            ann: ann,
+        });
+
+    });
+});
+
+app.get('/annonce', function (req, res) {
+    res.render('annonce.ejs');
+});
+
+app.get('/deposer', function (req, res) {
+    res.render('deposer.ejs');
 });
 
 

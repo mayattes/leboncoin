@@ -1,49 +1,25 @@
 <% include partials/header.ejs %>
+<div class="container">
+    <% for (var i = 0; i < ann.length; i++) { %>
+                <div class="row bloc">
+                    <div class="col-lg-4 offres">
+                        <a href="/annonce/<%= ann[i]._id %>">
+                            <img src="/uploads/<%= ann[i].photo%>" />
+                        </a>
+                    </div>
+                    <div class="col-lg-8 offres">
+                        <p class="title">
+                            <%= ann[i].title%>
+                        </p>
+                        <p>
+                            <%= ann[i].city%>
+                        </p>
+                        <p class="price">
+                            <%= ann[i].price%> &euro;</p>
+                    </div>
+                </div>
 
-<form action="deposer" method="POST" enctype="multipart/form-data">
-
-<div class="row">
-    <div class="col-12 text-wrapper" style="">
-        <h2 style="background-color:#666666;">Votre annonce</h2>
-
-        <h3>Titre de l'annonce</h3>
-        <input type="text" placeholder="" name="title" />
-
-        <h3>Texte de l'annonce</h3>
-        <textarea name="description" style="height: 250px; width: 600px"></textarea>
-
-        <h3>Prix</h3>
-        <input type="text" placeholder="" name="price" />
-
-        <h3>Photo</h3>
-        <input type="file" name="picture" />
-        
-    </div>
+    <% } %>
 </div>
-
-<div class="row">
-    <div class="col-12 text-wrapper">
-    <h2 style="background-color:#666666">Localisation</h2>
-    <h3>Ville ou code postal</h3>
-    <input type="text" placeholder="" name="town" />
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-12 text-wrapper">
-        <h2 style="background-color:#666666">Vos informations</h2>
-        <h3>Pseudo</h3>
-        <input type="text" placeholder="" name="nickname" />
-
-        <h3>Email</h3>
-        <input type="text" placeholder="" name="email" />
-
-        <h3>Téléphone</h3>
-        <input type="text" placeholder="" name="telephone" />
-    </div>
-</div>
-
-<button type="submit" class="btn btn-send">Valider</button>
-</form>
 
 <% include partials/footer.ejs %>
