@@ -1,54 +1,52 @@
 <!DOCTYPE html>
 
-<% include partials/header.ejs %>
-<% for (var i = 0; i < ann.length; i++) { %>
-    <div class="bloc">
-        <div class="col-lg-4 annonce">
-            <a href="/annonce/<%= ann[i]._id %>">
-                <img src="/uploads/<%= ann[i].picture%>" />
-            </a>
-        </div>
+<% include partials/header2.ejs %>
+<div class="container" style="margin: 20px; ">
+    <div class="row">
+    <div class="col-lg-7">
+    <div class="bloc" style="border: solid 2px; border-color: #E6E6E6;">
         <div class="bloc">
-            <p class="title">
-                <%= ann[i].title%>
-            </p>
+            <h2 class="title" style="color: black"><%= ann.title%></h2>
             <p class="picture">
-                <img src="/uploads/<%= ann[i].picture%>" alt="">
+                <img src="/uploads/<%= ann.picture%>" style="" alt="">
             </p>
         </div>
         <div>
-            <p class="id">
-                <%= ann[i].id%>
-            </p>
+            <p class="id"><%= ann.id%></p>
         </div>
         <div>
-            <p class="price">
-                <%= ann[i].price%> &euro;</p>
+            <p class="price" style="background-color: #E6E6E6; height: 50px;"><%= ann.price%> &euro;</p></div>
+        <div>
+            <p class="city" style="background-color: #E6E6E6; height: 50px;"><%= ann.town%></p>
         </div>
         <div>
-            <p class="city">
-                <%= ann[i].town%>
+            <p class="description">
+                <%= ann.description%>
             </p>
         </div>
+
+
        
     </div>
-    <% } %>
-
-<% for (var i = 0; i < ann.length; i++) { %>
-    <div class="row bloc">
-        <div>
-            <p class="id2">
-                <%= ann[i].id%>
-            </p>
-        </div>
-        <div>
-            <p class="telephone">
-                <%= ann[i].telephone%>
-            </p>
-        </div>
-      
     </div>
-    <% } %>
+    <div class="col-lg-5">
+    <div class="bloc" style="border: solid 2px; border-color: #E6E6E6;">
+        <div class="bloc">
+            <div class="id" style="margin: 20px; background-color: #E6E6E6; height: 50px; text-align: center;"> 
+                <%= ann.id%>
+            </div>
+            <div>
+                <p class="telephone" style="margin: 20px; background-color: orange; color: white; text-align: center; height: 50px;">
+                    <%= ann.telephone%>
+                </p>
+            </div>
+        
+        </div>
+    </div>
+    </div>
+    </div>
+
+</div>
 
 </body>
 

@@ -1,5 +1,27 @@
 <!DOCTYPE html>
 <% include partials/header.ejs %>
-    
+<section class="container">
+    <div class="top">
+        <% include partials/offres.ejs %>
+            <div class="row">
+                <% for (var i = 0; i < ann.length; i++) { %>
+                    <div class="col-4 d-flex justify-content-center">
+                        <img src="/uploads/<%= ann[i].picture%>" />" alt="">
+                    </div>
+                    <div class="col-8 d-flex flex-column">
+                        <p class="title" href="/annonce/<%=ann[i].id%>"><%=ann[i].title%></p>
+                        <p class="town"><%=ann[i].town%></p>
+                        <p class="price"><%=ann[i].price%></p>
+                    </div>
+                <% } %>
+            </div>
+            <a href="/deposer">Déposer une annonce</a>
+        
+
+    </div>
+</div>
+
+</section>
+
 </body>
 </html>

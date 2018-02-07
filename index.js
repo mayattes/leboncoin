@@ -83,19 +83,29 @@ app.post('/deposer', upload.single("picture"), function (req, res) {
     });
 });
 
-app.get('/offres', function (req, res) {
+/*app.get('/offres', function (req, res) {
     res.render('offres.ejs');
+});*/
+
+app.get('/offres', function (req, res) {
+    Annonce.find({}, function (err, ann) {
+        res.render('offres.ejs', {
+            ann: ann,
+        });
+
+    });
 });
+
 
 app.post("/upload", upload.single("picture"), function (req, res) {
     console.log(req.file);
     res.send("File uploaded");
 })
 
-app.get('/annonce', function (req, res) {
-    Annonce.find({}, function (err, ann) {
+app.get('/annonce/:id', function (req, res) {
+    Annonce.find({_id: req.params.id}, function (err, ann) {
         res.render('annonce.ejs', {
-            ann: ann,
+            ann: ann[0],
         });
 
     });

@@ -1,49 +1,49 @@
 <% include partials/header.ejs %>
 
-    <form action="deposer" method="POST" enctype="multipart/form-data">
+<form action="deposer" method="POST" enctype="multipart/form-data">
 
-        <div class="row">
-            <div class="col-12 text-wrapper" style="">
-                <h2 style="background-color:#666666;">Votre annonce</h2>
+<div class="row">
+    <div class="form-group" style="">
+        <h2 style="background-color:#666666;">Votre annonce</h2>
 
-                <h3>Titre de l'annonce</h3>
-                <input type="text" placeholder="" name="title" />
+        <h3>Titre de l'annonce</h3>
+        <input type="text" placeholder="" name="title" />
 
-                <h3>Texte de l'annonce</h3>
-                <textarea name="description" style="height: 250px; width: 600px"></textarea>
+        <h3>Texte de l'annonce</h3>
+        <textarea name="description" style="height: 250px; width: 600px"></textarea>
 
-                <h3>Prix</h3>
-                <input type="text" placeholder="" name="price" />
+        <h3>Prix</h3>
+        <input type="text" placeholder="" name="price" />
 
-                <h3>Photo</h3>
-                <input type="file" name="picture" />
+        <h3>Photo</h3>
+        <input type="file" name="picture" />
+        
+    </div>
+</div>
 
-            </div>
-        </div>
+<div class="row">
+    <div class="col-12 text-wrapper">
+    <h2 style="background-color:#666666">Localisation</h2>
+    <h3>Ville ou code postal</h3>
+    <input type="text" placeholder="" name="town" />
+    </div>
+</div>
 
-        <div class="row">
-            <div class="col-12 text-wrapper">
-                <h2 style="background-color:#666666">Localisation</h2>
-                <h3>Ville ou code postal</h3>
-                <input type="text" placeholder="" name="town" />
-            </div>
-        </div>
+<div class="row">
+    <div class="col-12 text-wrapper">
+        <h2 style="background-color:#666666">Vos informations</h2>
+        <h3>Pseudo</h3>
+        <input type="text" placeholder="" name="nickname" />
 
-        <div class="row">
-            <div class="col-12 text-wrapper">
-                <h2 style="background-color:#666666">Vos informations</h2>
-                <h3>Pseudo</h3>
-                <input type="text" placeholder="" name="nickname" />
+        <h3>Email</h3>
+        <input type="text" placeholder="" name="email" />
 
-                <h3>Email</h3>
-                <input type="text" placeholder="" name="email" />
+        <h3>Téléphone</h3>
+        <input type="text" placeholder="" name="telephone" />
+    </div>
+</div>
 
-                <h3>Téléphone</h3>
-                <input type="text" placeholder="" name="telephone" />
-            </div>
-        </div>
+<button type="submit" class="btn btn-send">Valider</button>
+</form>
 
-        <button type="submit" class="btn btn-send">Valider</button>
-    </form>
-
-    <% include partials/footer.ejs %>
+<% include partials/footer.ejs %>
