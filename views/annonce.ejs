@@ -1,14 +1,56 @@
+<!DOCTYPE html>
+
 <% include partials/header.ejs %>
+<% for (var i = 0; i < ann.length; i++) { %>
+    <div class="bloc">
+        <div class="col-lg-4 annonce">
+            <a href="/annonce/<%= ann[i]._id %>">
+                <img src="/uploads/<%= ann[i].picture%>" />
+            </a>
+        </div>
+        <div class="bloc">
+            <p class="title">
+                <%= ann[i].title%>
+            </p>
+            <p class="picture">
+                <img src="/uploads/<%= ann[i].picture%>" alt="">
+            </p>
+        </div>
+        <div>
+            <p class="id">
+                <%= ann[i].id%>
+            </p>
+        </div>
+        <div>
+            <p class="price">
+                <%= ann[i].price%> &euro;</p>
+        </div>
+        <div>
+            <p class="city">
+                <%= ann[i].town%>
+            </p>
+        </div>
+       
+    </div>
+    <% } %>
 
-<div class="bloc">
-   <%=ann.title%>
-   <%=ann.picture%>
-   <%=ann.id%>
-   <%=ann.town%>
-   <%=ann.price%>
-   <%=ann.description%>
-   <img src="/uploads/<%=ann.picture%>" >
-    
-</div>
+<% for (var i = 0; i < ann.length; i++) { %>
+    <div class="row bloc">
+        <div>
+            <p class="id2">
+                <%= ann[i].id%>
+            </p>
+        </div>
+        <div>
+            <p class="telephone">
+                <%= ann[i].telephone%>
+            </p>
+        </div>
+      
+    </div>
+    <% } %>
 
+</body>
+
+</html>
 

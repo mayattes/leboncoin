@@ -47,7 +47,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/', function (req, res) {
-    Annonce.find({ _id: req.params }, function (err, ann) { 
+    Ann.find({ _id: req.params }, function (err, ann) { 
         res.render('home.ejs', {
             ann: ann,
         });
@@ -55,9 +55,6 @@ app.get('/', function (req, res) {
     });
 });
 
-app.get('/annonce', function (req, res) {
-    res.render('annonce.ejs');
-});
 
 app.get('/deposer', function (req, res) {
     res.render('deposer.ejs');
@@ -95,6 +92,14 @@ app.post("/upload", upload.single("picture"), function (req, res) {
     res.send("File uploaded");
 })
 
+app.get('/annonce', function (req, res) {
+    Annonce.find({}, function (err, ann) {
+        res.render('annonce.ejs', {
+            ann: ann,
+        });
+
+    });
+});
 
  app.listen(3000, function () {
     console.log('hello');
