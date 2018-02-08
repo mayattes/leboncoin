@@ -1,5 +1,59 @@
 <% include partials/header.ejs %>
-<section class="container">
+
+
+    <section class="container">
+        <div class="top top-home">
+            <nav class="nav">
+                <a class="nav-link active" href="/offres">Tous</a>
+                <a class="nav-link" href="/offres/particulier">Particuliers</a>
+                <a class="nav-link" href="/offres/professionnel">Professionnel</a>
+            </nav>
+            <div class="row row-home ">
+                <% for (var i = 0; i < ann.length; i++) {%>
+
+                    <div class="col-4 d-flex justify-content-center">
+                        <img class="picture" src="/uploads/<%=ann[i].picture%>" alt="">
+
+                    </div>
+                    <div class="col-8 d-flex flex-column">
+                        <a class="title" href="/annonce/<%=ann[i].id%>">
+                            <%=ann[i].title%>
+                        </a>
+                        <p class="town">
+                            <%=ann[i].town%>
+                        </p>
+                        <p class="price">
+                            <%=ann[i].price%>€</p>
+                    </div>
+                    <%}%>
+            </div>
+            <a href="/deposer">Déposer une annonce</a>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <% for (var i = 1; i <= ann; i++) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="offres?page=<%=i%>">
+                                <%=i%>
+                            </a>
+                        </li>
+                        <%}%>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+
+                </ul>
+            </nav>
+        </div>
+    </section>
+
+</body>
+
+</html>
+<!-- <section class="container">
     <div class="top">
         <% include partials/offres.ejs %>
             <div class="row">
@@ -23,4 +77,4 @@
 </section>
 
 </body>
-</html>
+</html> -->

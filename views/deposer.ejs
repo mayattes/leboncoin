@@ -1,16 +1,15 @@
 <% include partials/header.ejs %>
-
 <form action="deposer" method="POST" enctype="multipart/form-data">
 
-<div class="row">
-    <div class="col-12 text-wrapper" style="">
+<div class="row" style="margin: 20px;">
+    <div class="col-12 text-wrapper" style="border: solid; border-color: #E6E6E6;">
         <h2 style="background-color:#666666;">Votre annonce</h2>
 
         <h3>Titre de l'annonce</h3>
         <input type="text" placeholder="" name="title" />
 
         <h3>Texte de l'annonce</h3>
-        <textarea name="description" style="height: 250px; width: 600px"></textarea>
+        <textarea name="description" style="height: 250px; width: 600px;"></textarea>
 
         <h3>Prix</h3>
         <input type="text" placeholder="" name="price" />

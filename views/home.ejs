@@ -1,7 +1,4 @@
 <% include partials/header.ejs %>
-<a href='/login'>Login</a>
-<a href='/register'>Register</a>
-
 <div class="container">
     <% for (var i = 0; i < ann.length; i++) { %>
                 <div class="row bloc">
@@ -14,8 +11,8 @@
                         <p class="title">
                             <%= ann[i].title%>
                         </p>
-                        <p>
-                            <%= ann[i].city%>
+                        <p class="town">
+                            <%= ann[i].town%>
                         </p>
                         <p class="price">
                             <%= ann[i].price%> &euro;</p>

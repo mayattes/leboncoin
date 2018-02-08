@@ -33,10 +33,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser()); // JSON.stringify
 passport.deserializeUser(User.deserializeUser()); // JSON.parse
 
-//routage
-app.get('/', function (req, res) {
-    res.render('home');
-});
+// //routage
+// app.get('/', function (req, res) {
+//     res.render('home');
+// });
 
 app.get('/secret', function (req, res) {
     if (req.isAuthenticated()) {
