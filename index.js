@@ -8,36 +8,92 @@ var User = require('./models/user');
 var multer = require("multer");
 var upload = multer({ dest: "public/uploads/" });
 var app = express();
-app.use(express.static("public"));
 
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://10.90.0.34:27017/leboncoin-koumba');
 
-var app = express();
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 // Activer la gestion de la session
-// app.use(expressSession({
-//     secret: 'azerty',
-//     resave: false,
-//     saveUninitialized: false,
-//     store: new MongoStore({ mongooseConnection: mongoose.connection })
-// }));
+app.use(expressSession({
+    secret: 'azerty',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection })
+}));
 
 // Activer `passport`
-// app.use(passport.initialize());
-// app.use(passport.session());
+app.use(passport.initialize());
+app.use(passport.session());
 
-// passport.use(new LocalStrategy(User.authenticate()));
-// passport.serializeUser(User.serializeUser()); // JSON.stringify
-// passport.deserializeUser(User.deserializeUser()); // JSON.parse
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser()); // JSON.stringify
+passport.deserializeUser(User.deserializeUser()); // JSON.parse
 
-/* var studentSchema = new mongoose.Schema({
-    name: String,
-    age: Number
-}); */
+//routage
+app.get('/', function (req, res) {
+    res.render('home');
+});
+
+app.get('/secret', function (req, res) {
+    if (req.isAuthenticated()) {
+        console.log(req.user);
+        res.render('secret');
+    } else {
+        res.redirect('/');
+    }
+});
+
+app.get('/register', function (req, res) {
+    if (req.isAuthenticated()) {
+        res.redirect('/secret');
+    } else {
+        res.render('register');
+    }
+});
+
+app.post('/register', function (req, res) {
+    // Créer un utilisateur, en utilisant le model defini
+    // Nous aurons besoin de `req.body.username` et `req.body.password`
+    User.register(
+        new User({
+            username: req.body.username,
+            // D'autres champs peuvent être ajoutés ici
+        }),
+        req.body.password, // password will be hashed
+        function (err, user) {
+            if (err) {
+                console.log(err);
+                return res.render('register');
+            } else {
+                passport.authenticate('local')(req, res, function () {
+                    res.redirect('/secret');
+                });
+            }
+        }
+    );
+});
+
+app.get('/login', function (req, res) {
+    if (req.isAuthenticated()) {
+        res.redirect('/secret');
+    } else {
+        res.render('login');
+    }
+});
+
+app.post('/login', passport.authenticate('local', {
+    successRedirect: '/secret',
+    failureRedirect: '/login'
+}));
+
+app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect('/');
+});
 
 var annonceSchema = new mongoose.Schema({
     title: String,   
@@ -65,15 +121,6 @@ var Annonce = mongoose.model("annonce", annonceSchema);
 app.get('/', function (req, res) {
     //Annonce.find({ _id: req.params }, function (err, ann) { 
     Annonce.find({}, function (err, ann) {
-        res.render('home.ejs', {
-            ann: ann,
-        });
-
-    });
-});
-
-app.get('/', function (req, res) {
-    Ann.find({ _id: req.params }, function (err, ann) { 
         res.render('home.ejs', {
             ann: ann,
         });
@@ -139,19 +186,23 @@ app.get('/annonce/:id', function (req, res) {
 
 //supprimer une annonce
 app.get('/annonce/:id/remove', function (req, res) {
-    annonce.remove({ _id: req.body.id }, function (err) {
-        if (!err) {
-        message.type = 'notification!';
-        } else { message.type = 'error'; }
-        }); 
-
+    Annonce.remove({ _id: req.params.id }, function (err, ann) {
+        res.render('annonce.ejs', {
+            ann: ann[0],
+        });
     });
+
 });
 
 //modifier une annonce
+app.get('/annonce/:id/modifier', function (req, res) {
+    Annonce.findOne({ _id: req.params.id }, function (err, ann) {
+        res.render('annonce.ejs', {
+            ann: ann,
+        });
+    });
 
-
-
+});
 
 
  app.listen(3000, function () {
