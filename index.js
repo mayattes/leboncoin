@@ -1,4 +1,10 @@
 var express = require('express');
+var expressSession = require('express-session');
+var MongoStore = require('connect-mongo')(expressSession);
+var passport = require('passport');
+var bodyParser = require('body-parser');
+var LocalStrategy = require('passport-local');
+var User = require('./models/user');
 var multer = require("multer");
 var upload = multer({ dest: "public/uploads/" });
 var app = express();
@@ -7,6 +13,26 @@ app.use(express.static("public"));
 var mongoose = require('mongoose');
 
 mongoose.connect('mongodb://10.90.0.34:27017/leboncoin-koumba');
+
+var app = express();
+app.set('view engine', 'ejs');
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Activer la gestion de la session
+// app.use(expressSession({
+//     secret: 'azerty',
+//     resave: false,
+//     saveUninitialized: false,
+//     store: new MongoStore({ mongooseConnection: mongoose.connection })
+// }));
+
+// Activer `passport`
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+// passport.use(new LocalStrategy(User.authenticate()));
+// passport.serializeUser(User.serializeUser()); // JSON.stringify
+// passport.deserializeUser(User.deserializeUser()); // JSON.parse
 
 /* var studentSchema = new mongoose.Schema({
     name: String,
@@ -110,6 +136,23 @@ app.get('/annonce/:id', function (req, res) {
 
     });
 });
+
+//supprimer une annonce
+app.get('/annonce/:id/remove', function (req, res) {
+    annonce.remove({ _id: req.body.id }, function (err) {
+        if (!err) {
+        message.type = 'notification!';
+        } else { message.type = 'error'; }
+        }); 
+
+    });
+});
+
+//modifier une annonce
+
+
+
+
 
  app.listen(3000, function () {
     console.log('hello');
